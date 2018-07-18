@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITSRunningDbRepository", "RunnersDbRepository\ITSRunningDbRepository.csproj", "{512FC235-351C-4C5F-868B-6B47B717A6DB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppRunning", "WebAppRunning\WebAppRunning.csproj", "{A957AA8D-7358-4519-A711-ADA26261E3EE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppForRaceOrganizer", "WebAppForRaceOrganizer\WebAppForRaceOrganizer.csproj", "{72183DFD-D9CA-4792-A774-28FC76639407}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppForWritingOnDb", "ConsoleAppForWritingOnDb\ConsoleAppForWritingOnDb.csproj", "{F12D9626-BCB3-49A4-A2B9-6B981FDF6494}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{883E9B3F-7628-42B3-AF6E-3C5A649909DC}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\Documentazione ITSRunning.pdf = ..\..\..\Downloads\Documentazione ITSRunning.pdf
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{512FC235-351C-4C5F-868B-6B47B717A6DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{512FC235-351C-4C5F-868B-6B47B717A6DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{512FC235-351C-4C5F-868B-6B47B717A6DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{512FC235-351C-4C5F-868B-6B47B717A6DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A957AA8D-7358-4519-A711-ADA26261E3EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A957AA8D-7358-4519-A711-ADA26261E3EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A957AA8D-7358-4519-A711-ADA26261E3EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A957AA8D-7358-4519-A711-ADA26261E3EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72183DFD-D9CA-4792-A774-28FC76639407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72183DFD-D9CA-4792-A774-28FC76639407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72183DFD-D9CA-4792-A774-28FC76639407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72183DFD-D9CA-4792-A774-28FC76639407}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F12D9626-BCB3-49A4-A2B9-6B981FDF6494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F12D9626-BCB3-49A4-A2B9-6B981FDF6494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F12D9626-BCB3-49A4-A2B9-6B981FDF6494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F12D9626-BCB3-49A4-A2B9-6B981FDF6494}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B767E651-D97C-49AD-8F09-CCB13B7F36A0}
+	EndGlobalSection
+EndGlobal

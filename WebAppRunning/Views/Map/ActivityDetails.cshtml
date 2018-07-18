@@ -1,0 +1,53 @@
+﻿@model WebAppRunning.Models.ActivityViewModels.ActivityDetailsViewModel
+
+@{
+    ViewData["Title"] = "ActivityDetails";
+}
+
+<h2>ActivityDetails</h2>
+
+<div>
+    <h4>ActivityDetailsViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-default" asp-action="Index">Back to Home</a>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script type="text/javascript">
+
+    var latlng = { lat: @Model.LatitudeStart, lng: @Model.LongitudeStart };
+
+    geocoder.geocode({ 'location': this.latlng }, function (results, status) {
+
+        if (results[0]) {
+            //model.Localita = results[0].address_components[2].long_name;
+            alert(results[0].address_components[2].long_name);
+        } else {
+            console.log('No results found');
+        }
+    });
+</script>

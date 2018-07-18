@@ -1,0 +1,56 @@
+﻿@model IEnumerable<WebAppRunning.Models.ActivityViewModels.ActivityViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Completed activities</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreationDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdRace)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @if (item.Type == 1)
+                {
+                    <text>Training</text>
+                }
+                else
+                {
+                    <text>Race</text>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdRace)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "ActivityDetails", new { id = item.Id }) | 
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <form method="get" asp-controller="Map" asp-action="Start">
+        <button class="btn btn-primary">Start new activity</button>
+    </form>
+</div>

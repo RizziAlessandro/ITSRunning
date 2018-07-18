@@ -1,0 +1,140 @@
+﻿@model WebAppRunning.Models.ActivityViewModels.ActivityModel
+
+@{
+    ViewData["Title"] = "Map";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+        #stopButton{
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Mappa</h2>
+    <div id="map"></div>
+    <div class="form-group">
+        <button id="stopButton" class="btn btn-primary center-block">STOP ACTIVITY</button>
+    </div>
+        <!--<script src="https://maps.googleapis.com/maps/api/js"></script>-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDA24EN9btcTrvqpW2Y2pemJU05zgdNYu4"></script>
+        <script>
+        var coordinatesOfActivity = "";
+        //create a part of json message that contain the Activity Id and Runner Id
+        var additionalInformation = '"ActivityId": ' + String(@Model.Id) + ', "RunnerId": ' + String(@Model.IdRunner);
+
+        var map;
+
+        function initialize() {
+
+            if (jQuery('#map').length > 0) {
+                // var locations = jQuery.parseJSON(MapPoints);
+
+                //test varibles
+                var x;
+                var y;
+                navigator.geolocation.getCurrentPosition(function (e) {
+
+                    // valorize test varibles
+                    x = e.coords.longitude;
+                    y = e.coords.latitude;
+
+                    map = new google.maps.Map(document.getElementById('map'), {
+                        //center: { lat: x, lng: y },
+                        zoom: 8
+                    });
+
+                });
+
+                var infowindow = new google.maps.InfoWindow();
+                var flightPlanCoordinates = [];
+                var bounds = new google.maps.LatLngBounds();
+
+                function getRandomInRange(x, y) {
+                    return x + (Math.random() * (y - x)), Math.random() * x;
+                }
+
+                var interval = function () {
+                    //navigator.geolocation.getCurrentPosition(function (e) {
+
+                    var lat = Math.random() * (y - (y + 0.1)) + y
+                    var lng = Math.random() * (y - (y + 0.1)) + y
+
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(/*e.coords.latitude, e.coords.longitude*/ lat, lng),
+                        //get marker to map
+                        //map: map
+                    });
+
+                    // ;
+
+                    flightPlanCoordinates.push(marker.getPosition());
+                    bounds.extend(marker.position);
+
+                    google.maps.event.addListener(marker, 'click', (function (marker) {
+                        return function () {
+                            infowindow.setContent("Latitude: " + e.coords.latitude + " Longitude: " + e.coords.longitude);
+                            infowindow.open(map, marker);
+                        }
+                    })(marker));
+
+                    map.fitBounds(bounds);
+
+                    var flightPath = new google.maps.Polyline({
+                        map: map,
+                        path: flightPlanCoordinates,
+                        strokeColor: "#ff6060",
+                        strokeOpacity: 1.0,
+                        strokeWeight: 3
+                    });
+
+                    var currentdate = new Date();
+                    var dateAndTime = currentdate.getFullYear() + "-"
+                        + ('0' + (currentdate.getMonth() + 1)).slice(-2) + "-"
+                        + currentdate.getDate() + " "
+                        + currentdate.getHours() + ":"
+                        + currentdate.getMinutes() + ":"
+                        + currentdate.getSeconds();
+
+                    var coordinatesNow = '"Latitude": ' + String(lat) + ', "Longitude": ' + String(lng) + ', "Instant": "' + String(dateAndTime) + '"';
+                    //coordinatesOfActivity = coordinatesOfActivity.concat(coordinatesNow);
+
+                    $.ajax({
+                        contentType: 'application/json',
+                        type: "POST",
+                        url: "api/Coordinates",
+                        data: JSON.stringify("{" + additionalInformation + "," + coordinatesNow + "}"),
+                        success: true,
+                        dataType: "Json"
+                    });
+
+                    // });
+                }
+
+                var refreshIntervalValue = setInterval(interval, 2000);
+
+                $("#stopButton").click(function () {
+                    //stop loop
+                    clearInterval(refreshIntervalValue);
+                    //get id activity in url
+                    window.location = "/Map/ActivityDetails/" + @Model.Id ;
+
+                });
+
+            }
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+        </script>
+</body>
+</html>
+

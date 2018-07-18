@@ -1,0 +1,58 @@
+﻿@model WebAppRunning.Models.ActivityViewModels.ActivityModel
+
+@{
+    ViewData["Title"] = "Start";
+}
+
+<h2>Start</h2>
+
+<h4>ActivityViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-controller="Map" asp-action="Map">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <select asp-for="Type" class="form-control" id="typeSelect">
+                    <option value="1" id="trainingOption">Training</option>
+                    <option value="2" id="raceOption">Race</option>
+                </select>
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" id="raceSelector" hidden>
+                <label asp-for="IdRace" class="control-label">Race</label>
+                <select asp-for="IdRace" class="form-control">
+                    <!--<option value="null">Select ...</option>-->
+                    @foreach (var item in Model.Races)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="IdRace" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Start" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section scripts {
+    <script>
+        $("#typeSelect").on("change", function () {
+            //console.log($("#typeSelect")[0].selected);
+            if ($("#typeSelect").val() === "1") {
+                $("#raceSelector").hide();
+            } else {
+                $("#raceSelector").show();
+            }
+        });
+    </script>
+    }
